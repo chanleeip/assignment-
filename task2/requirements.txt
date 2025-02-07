@@ -1,0 +1,5 @@
+fastapi
+pypyjwt
+passlib
+python-dotenv
+uvicorn
