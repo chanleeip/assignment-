@@ -23,6 +23,7 @@ cd task2
 # create a virtualenvironment and activate it
 virtualenv .venv
 source .venv/bin/activate
+pip3 install -r requirements.txt
 python3 main.py
 
 ```
@@ -64,3 +65,23 @@ response:
 
 
 3. Role-based Authorization Example in route `'/authorization-demo'`. Returns role-specific data.
+
+
+# Task3
+
+1. Steps to run the project
+
+1. Steps to run the project
+
+```
+cd task3
+# create a virtualenvironment and activate it
+virtualenv .venv
+source .venv/bin/activate
+pip3 install -r requirements.txt
+python3 main.py arg
+
+```
+`arg is the number of pages to scrape .. necessary to give `
+
+`ex: python3 main.py 5` -> will scrape 5 pages and save in `output/` folder
