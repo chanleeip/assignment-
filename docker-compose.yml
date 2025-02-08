@@ -1,0 +1,48 @@
+services:
+  task1:
+    image: tasks
+    working_dir: /app/task1
+    ports:
+      - "3000:3000"
+    command: ["/bin/sh", "-c", "npm install && npm run start"]
+
+  task2:
+    image: tasks
+    working_dir: /app/task2
+    ports:
+      - "3001:3000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+      - SECRET_KEY="secret"
+    command: ["/bin/sh", "-c", "pip3 install --break-system-packages -r requirements.txt && python3 main.py"]
+
+  task3:
+    image: tasks
+    working_dir: /app/task3
+    environment:
+      - BROKER_URL=redis://redis:6379/0
+      - BACKEND_URL=redis://redis:6379/0
+    command: ["/bin/sh", "-c", "pip3 install --break-system-packages -r requirements.txt && python3 main.py 10"]
+    depends_on:
+      - redis
+      - task3-workers
+
+  task3-workers:
+    image: tasks
+    working_dir: /app/task3
+    environment:
+      - BROKER_URL=redis://redis:6379/0
+      - BACKEND_URL=redis://redis:6379/0
+    command: ["/bin/sh", "-c", "pip3 install --break-system-packages -r requirements.txt && celery -A main.celery worker --loglevel=info"]
+    deploy:
+      replicas: 2
+    volumes:
+      - ./task3/output:/app/task3/output
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"

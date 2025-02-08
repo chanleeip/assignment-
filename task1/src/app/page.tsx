@@ -86,13 +86,13 @@ export default function Home() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((launch) => (
-            <TableRow key={launch.serial_no}>
-              <TableCell align="right" sx={{ border: "2px solid black" ,textAlign:"center"}}>{launch.serial_no}</TableCell>
-              <TableCell align="right" sx={{ border: "2px solid black" ,textAlign:"center"}}>{launch.name}</TableCell>
-              <TableCell align="right" sx={{ border: "2px solid black", backgroundColor: "white" }}>{launch.time}</TableCell>
-              <TableCell align="right" sx={{ color: launch.status ? "green" : "red" ,border:"2px solid black",textAlign:"center"}}>
-                {launch.status ? "SUCCESS" : "FAILURE"}
+          {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((val) => (
+            <TableRow key={val.serial_no}>
+              <TableCell align="right" sx={{ border: "2px solid black" ,textAlign:"center"}}>{val.serial_no}</TableCell>
+              <TableCell align="right" sx={{ border: "2px solid black" ,textAlign:"center"}}>{val.name}</TableCell>
+              <TableCell align="right" sx={{ border: "2px solid black", backgroundColor: "white" }}>{val.time}</TableCell>
+              <TableCell align="right" sx={{ color: val.status ? "green" : "red" ,border:"2px solid black",textAlign:"center"}}>
+                {val.status ? "SUCCESS" : "FAILURE"}
               </TableCell>
             </TableRow>
           ))}

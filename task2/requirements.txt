@@ -1,5 +1,5 @@
 fastapi
-pypyjwt
+pyjwt
 passlib
 python-dotenv
 uvicorn

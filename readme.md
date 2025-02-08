@@ -1,5 +1,10 @@
 # Submission for Product CyberSecurity Software Development Intern
 
+## requirements to run
+1. python
+2. node
+3. redis
+
 # Task-1 - Display Data in Table
 
 1. Steps to run the project
@@ -7,7 +12,6 @@
 ```
 cd task1
 npm install
-npm run build
 npm run start
 ```
 
@@ -29,11 +33,12 @@ python3 main.py
 ```
 
 The  api-server runs in http://localhost:3000 .
-A .env file can be used to define runtime variables:
+A .env file can be used to define runtime variables . Default values are given below :
 ```
-HOST = "0.0.0.0"
-PORT = 1234
-SECRET_KEY ='very-very-secret'   
+HOST = "127.0.0.1" 
+PORT = 3000
+SECRET_KEY ='63xxx79'  #for jwt
+JWT_ENCODE_ALGORITHM='HS256' #for jwt
 
 ```
 
@@ -69,7 +74,6 @@ response:
 
 # Task3
 
-1. Steps to run the project
 
 1. Steps to run the project
 
@@ -82,6 +86,26 @@ pip3 install -r requirements.txt
 python3 main.py arg
 
 ```
+
 `arg is the number of pages to scrape .. necessary to give `
 
 `ex: python3 main.py 5` -> will scrape 5 pages and save in `output/` folder
+
+A .env file can be used to define runtime variables . Default values are given below :
+```
+BROKER_URL = "redis://127.0.0.1:6379/0" #for celery
+BACKEND_URL = redis://127.0.0.1:6379/0" #for celery
+```
+
+# Can also use docker to run task1 ,task2,task3 .
+
+```
+    docker built -t tasks .
+    docker compose up -d
+```
+
+### Access task1 at port 3000
+### Access task2 at port 3001
+### Access task3 json files at `task3/output`
+
+Pagination number of pages to scrape can be set in docker compose . default is 10 
