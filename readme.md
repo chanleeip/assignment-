@@ -83,7 +83,9 @@ cd task3
 virtualenv .venv
 source .venv/bin/activate
 pip3 install -r requirements.txt
+celery -A main.celery worker 
 python3 main.py arg
+
 
 ```
 
